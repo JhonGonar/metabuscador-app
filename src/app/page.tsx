@@ -3,12 +3,14 @@ import Image from "next/image";
 import { useState } from "react";
 import CategoryFilter from "../widgets/CategoryFilter/CategoryFilter";
 import ProductList from "../widgets/ProductList/ProductList";
+import ProductModal from "../widgets/ProductModal/ProductModal";
 import { products } from "../entities/product/data";
 import { useCategoryFilter } from "../features/search/useCategoryFilter";
 
 export default function Home() {
   const { category, setCategory, minPrice, setMinPrice, maxPrice, setMaxPrice, filtered } =
     useCategoryFilter(null, products);
+  const [selected, setSelected] = useState<null | typeof products[number]>(null);
 
   return (
     <div className="min-h-screen p-8 sm:p-12 bg-[var(--background)] text-[var(--foreground)]">
@@ -43,8 +45,9 @@ export default function Home() {
         </div>
 
         <section>
-          <ProductList items={filtered} />
+          <ProductList items={filtered} onSelect={(p) => setSelected(p)} />
         </section>
+        <ProductModal product={selected} onClose={() => setSelected(null)} />
       </main>
     </div>
   );
