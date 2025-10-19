@@ -45,7 +45,7 @@ export default function ProductModal({ product, onClose }: Props) {
             <h2 className="text-xl font-bold">{product.name}</h2>
             <p className="text-sm text-gray-600">{product.category}</p>
             <div className="mt-4 text-lg font-semibold">${product.price.toFixed(2)}</div>
-            <p className="mt-4 text-gray-700">Detalle del producto (descripción breve de ejemplo).</p>
+            <p className="mt-4 text-gray-700">{product.description}</p>
           </div>
         </div>
       </div>
